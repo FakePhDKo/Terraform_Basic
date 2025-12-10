@@ -1,0 +1,74 @@
+# 1. Terraform 설정 디렉토리 (가장 중요)
+# provider 플러그인과 모듈이 다운로드되는 곳입니다. 용량이 크고 terraform init으로 언제든 재생성 가능합니다.
+.terraform/
+
+# 2. Terraform State 파일 (절대 업로드 금지 - 보안 위험 1순위)
+# 현재 인프라의 상태와 비밀번호, 키 정보가 평문으로 저장될 수 있습니다.
+*.tfstate
+*.tfstate.*
+
+# 3. 민감한 변수 파일 (비밀번호, Access Key 등)
+# 실제 값을 담은 파일은 올리지 말고, example 파일만 올리는 것이 관례입니다.
+*.tfvars
+*.tfvars.json
+
+# 예외: 예제 파일은 올려서 팀원들이 참고하게 합니다.
+!*.example.tfvars
+
+# 4. 충돌 로그 및 임시 파일
+crash.log
+crash.*.log
+*.log
+
+# 5. 로컬 설정 오버라이드 파일
+# 개발자 혼자 테스트하려고 설정을 잠시 바꾼 파일들입니다.
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# 6. CLI 설정 파일
+.terraformrc
+terraform.rc
+
+# 7. IDE 및 OS 관련 잡동사니 (Terraform과 무관하지만 필수)
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 8. 키 파일 (혹시 모를 사고 방지)
+*.pem
+*.key
+*.ppk
+*.pub
+# id_rsa, id_ed25519 등 개인키 파일 (확장자가 없는 경우도 많음)
+id_rsa*
+id_ed25519*
+known_hosts
+
+# 10. AWS 및 클라우드 자격 증명 (다운로드 받은 파일들)
+credentials.csv
+accessKeys.csv
+rootkey.csv
+platform-auth-file
+service-account-key.json
+gcloud-service-key.json
+
+# 11. 환경 변수 파일 (API Key나 DB 비번이 자주 들어감)
+.env
+.env.local
+.env.*
+!.env.example
+
+# 12. SSL/TLS 인증서 및 암호화 파일
+*.p12
+*.pfx
+*.jks
+*.csr
+*.crt
+*.cer
+
+# 13. 맥/윈도우 시스템 자격 증명 관련 (혹시 모를 상황 대비)
+.DS_Store
+Thumbs.db
